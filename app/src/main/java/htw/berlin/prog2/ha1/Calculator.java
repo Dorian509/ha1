@@ -66,14 +66,13 @@ public class Calculator {
      */
     public void pressBinaryOperationKey(String operation) {
         if (!latestOperation.equals("")) {
-            double current = Double.parseDouble(screen);
 
             double result;
             switch(latestOperation){
-                case "+" -> result = latestValue + current;
-                case "-" -> result = latestValue - current;
-                case "x" -> result = latestValue * current;
-                case "/" -> result = latestValue / current;
+                case "+" -> result = latestValue + Double.parseDouble(screen);
+                case "-" -> result = latestValue - Double.parseDouble(screen);
+                case "x" -> result = latestValue * Double.parseDouble(screen);
+                case "/" -> result = latestValue / Double.parseDouble(screen);
                 default -> throw new IllegalArgumentException();
             }
             latestValue = result;
