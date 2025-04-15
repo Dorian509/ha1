@@ -29,11 +29,14 @@ public class Calculator {
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
     public void pressDigitKey(int digit) {
-        if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(digit > 9 || digit < 0) throw new IllegalArgumentException();
+        if(screen.equals("0")) screen = "";
+
 
         screen = screen + digit;
+
+
     }
 
     /**
@@ -59,9 +62,25 @@ public class Calculator {
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
-    public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
+    public void pressBinaryOperationKey(String operation) {
+        if (!latestOperation.equals("")) {
+            double current = Double.parseDouble(screen);
+
+            double result;
+            switch(latestOperation){
+                case "+" -> result = latestValue + current;
+                case "-" -> result = latestValue - current;
+                case "x" -> result = latestValue * current;
+                case "/" -> result = latestValue / current;
+                default -> throw new IllegalArgumentException();
+            }
+            latestValue = result;
+        } else {
+            latestValue = Double.parseDouble(screen);
+        }
         latestOperation = operation;
+        screen = "";
+
     }
 
     /**
