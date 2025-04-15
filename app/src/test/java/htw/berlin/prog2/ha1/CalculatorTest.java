@@ -102,7 +102,27 @@ class CalculatorTest {
             assertEquals(expected, actual);
 
         }
+    @Test
+    @DisplayName("should display the result after adding three numbers together")
+    void testAddingThreeNumbersTogether(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+
+        calc.pressEqualsKey();
+
+        String expected = "14";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
     }
-    //TODO hier weitere Tests erstellen
+
+}
+
+//TODO hier weitere Tests erstellen
 
 
