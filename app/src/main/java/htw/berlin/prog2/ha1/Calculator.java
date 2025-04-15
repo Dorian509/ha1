@@ -1,5 +1,7 @@
 package htw.berlin.prog2.ha1;
 
+import java.text.DecimalFormat;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -144,8 +146,15 @@ public class Calculator {
             case "/" -> latestValue / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
-        screen = Double.toString(result);
-        if(screen.equals("Infinity")) screen = "Error";
+        DecimalFormat neuesFormat = new DecimalFormat("0.##########");
+        String formatiert = neuesFormat.format(result);
+        if(formatiert.length() <= 10){
+            screen = formatiert;
+        } else {
+            screen = Double.toString(result);
+        }
+
+        if(screen.equals("Infinity") || (screen.equals("∞")) ) screen = "Error";
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
