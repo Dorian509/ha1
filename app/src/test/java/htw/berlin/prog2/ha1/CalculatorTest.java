@@ -87,24 +87,26 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("schould display the result after subtracting two posotive numbers")
-    void testSubtractingOfTwoNumbers(){
+    void testSubtractingOfTwoNumbers() {
         Calculator calc = new Calculator();
-            calc.pressDigitKey(9);
-            calc.pressBinaryOperationKey("-");
-            calc.pressDigitKey(3);
-            calc.pressEqualsKey();
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
 
-            String expected = "6";
-            String actual = calc.readScreen();
+        String expected = "6";
+        String actual = calc.readScreen();
 
-            assertEquals(expected, actual);
+        assertEquals(expected, actual);
 
-        }
+    }
+
     @Test
     @DisplayName("should display the result after adding three numbers together")
-    void testAddingThreeNumbersTogether(){
+    void testAddingThreeNumbersTogether() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(5);
@@ -115,12 +117,37 @@ class CalculatorTest {
 
         calc.pressEqualsKey();
 
-        String expected = "14";
+        String expected = "15";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display the full number of the result")
+    void testDisplayFullNumber() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2); //1
+        calc.pressDigitKey(0); //2
+        calc.pressDigitKey(0); //3
+        calc.pressDigitKey(0); //4
+        calc.pressDigitKey(0); //5
+        calc.pressDigitKey(0); //6
+        calc.pressDigitKey(0); //7
+        calc.pressDigitKey(0); //8
+
+        calc.pressBinaryOperationKey("x");
+
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "40000000";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 }
 
 //TODO hier weitere Tests erstellen
