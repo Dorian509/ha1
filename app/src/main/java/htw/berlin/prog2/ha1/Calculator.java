@@ -67,6 +67,12 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation) {
         if (!latestOperation.equals("")) {
 
+            if(latestOperation.equals("/") && Double.parseDouble(screen) == 0){
+                screen = "Error";
+                latestOperation = "";
+                return;
+            }
+
             double result;
             switch(latestOperation){
                 case "+" -> result = latestValue + Double.parseDouble(screen);
@@ -75,6 +81,7 @@ public class Calculator {
                 case "/" -> result = latestValue / Double.parseDouble(screen);
                 default -> throw new IllegalArgumentException();
             }
+            screen = Double.toString(result);
             latestValue = result;
         } else {
             latestValue = Double.parseDouble(screen);
